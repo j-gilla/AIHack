@@ -8,7 +8,4 @@ hobbies = _.map(hobbies.query.pages['31257416'].links, function (el) {
   return el.title;
 });
 
-
-
-
 console.log(hobbies);

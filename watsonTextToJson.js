@@ -9,14 +9,19 @@ var alchemy_language = new AlchemyLanguageV1({
 console.log(alchemy_language);
 
  var params = {
-  text: ''
+  text: 'I like pool'
  };
 
 alchemy_language.keywords(params, function (err, response) {
   if (err)
     console.log('error:', err);
-  else
-    console.log(JSON.stringify(response, null, 2));
+  else {
+    var stringy = response;
+    console.log(stringy.keywords.map(function (el) {
+      return el.text;
+    }));
+  }
 });
+
 
 
