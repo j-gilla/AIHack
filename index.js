@@ -1,5 +1,8 @@
 const express = require('express');
 const twilio = require('twilio');
+// const accountSID = require('./.config').accountSID;
+// const authToken = require('./.config').authToken;
+// const client = require('twilio')(accountSid, authToken);
 
 let app = express();
 
@@ -7,12 +10,11 @@ let app = express();
 app.post('/record', (request, response) => {
   // Use the Twilio Node.js SDK to build an XML response
   let twiml = new twilio.TwimlResponse();
-  twiml.say('Hello, thanks for calling Julie. What are you interested in today?');
+  twiml.say('Hello, thanks for calling James. What are you interested in today?');
 
-  console.log('***');
-  console.log(response);
+
   // Use <Record> to record the caller's message
-  twiml.record();
+  twiml.record({transcribe: true, maxLength: 60});
 
   // End the call with <Hangup>
   twiml.hangup();
