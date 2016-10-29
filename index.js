@@ -1,8 +1,5 @@
 const express = require('express');
 const twilio = require('twilio');
-// const accountSID = require('./.config').accountSID;
-// const authToken = require('./.config').authToken;
-// const client = require('twilio')(accountSid, authToken);
 
 let app = express();
 
