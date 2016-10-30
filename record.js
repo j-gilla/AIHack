@@ -4,6 +4,8 @@ const client = require('twilio')(accountSID, authToken);
 var fs = require('fs');
 var _ = require('underscore');
 var AlchemyLanguageV1 = require('watson-developer-cloud/alchemy-language/v1');
+var twilio = require('twilio');
+var resp = new twilio.TwimlResponse();
 
 var acts = [
 {name: 'Holly Mitchell', activity: 'Rambling Club', contactNumber:'01156 778 9890'},
@@ -51,7 +53,6 @@ client.transcriptions("TRb2d7339d66e57918aa04c1f6959cde63").get(function(err, tr
         text: transcription.transcriptionText
     }
     // now we need to put the text in the watson-developer-cloud
-
     alchemy_language.keywords(params, function (err, response) {
         if (err) console.log('error:', err);
         else {
@@ -59,21 +60,21 @@ client.transcriptions("TRb2d7339d66e57918aa04c1f6959cde63").get(function(err, tr
             var keywords = response.keywords.map(function (wordObject) {
                 return wordObject.text;
             });
-
             console.log(keywords);
-
             var toUserCall  = 'Would you like the organiser of ' + matchWord(keywords[0]) + ' to contact you?'
-
             console.log(toUserCall);
-            // var stringy = response;
-            // console.log(stringy.keywords.map(function (el) {
-            //     return el.text;
-            //     }));
+            //resp.say('Welcome to Twilio!');
+            resp.say(`${toUserCall}`, {
+              voice: 'man',
+              language: 'en-gb'
+            })
+            console.log(resp.toString());
             }
         });
-
-
 });
+
+
+
 
 //Get all working
 //from this extract the latest, first one in the object
