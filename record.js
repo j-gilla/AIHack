@@ -47,7 +47,7 @@ var alchemy_language = new AlchemyLanguageV1({
 // });
 
 client.transcriptions("TRb2d7339d66e57918aa04c1f6959cde63").get(function(err, transcription) {
-    console.log(transcription.transcriptionText);
+    // console.log(transcription.transcriptionText);
 
     var params = {
         text: transcription.transcriptionText
@@ -60,16 +60,25 @@ client.transcriptions("TRb2d7339d66e57918aa04c1f6959cde63").get(function(err, tr
             var keywords = response.keywords.map(function (wordObject) {
                 return wordObject.text;
             });
-            console.log(keywords);
+            // sconsole.log(keywords);
             var toUserCall  = 'Would you like the organiser of ' + matchWord(keywords[0]) + ' to contact you?'
-            console.log(toUserCall);
+            // console.log(toUserCall);
             //resp.say('Welcome to Twilio!');
+            client.calls.create({
+                url: "https://handler.twilio.com/twiml/EHdb58182deea04e1da9edf2e74627e7f1",
+                to: "+447706212658",
+                from: "+44 115 824 4806" //outgoing number
+            }, function(err, call) {
+                process.stdout.write(call.sid);
+            });
+
             resp.say(`${toUserCall}`, {
-              voice: 'man',
+              voice: 'alice',
               language: 'en-gb'
             })
             console.log(resp.toString());
             }
+
         });
 });
 
