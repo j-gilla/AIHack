@@ -18,9 +18,9 @@ const matchWord = function(keyword){
   }, '');
 return output;
   };
-  
 
-var toUserCall  = 'Would you like the organiser of ' + matchWord('chess') + 'to contact you?'
+
+var toUserCall  = 'Would you like the organiser of ' + matchWord('chess') + ' to contact you?'
 
 
 console.log(toUserCall);
