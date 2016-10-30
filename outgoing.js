@@ -5,9 +5,9 @@ const client = require('twilio')(accountSID, authToken);
 
 
 client.calls.create({
-    url: callText.xml
+    url: "https://handler.twilio.com/twiml/EHdb58182deea04e1da9edf2e74627e7f1.xml",
     to: "+447706212658",
-    from: "+44 115 824 4806"
+    from: "+44 115 824 4806" //outgoing number
 }, function(err, call) {
     process.stdout.write(call.sid);
 });
