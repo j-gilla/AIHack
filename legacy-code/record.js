@@ -40,25 +40,18 @@ var alchemy_language = new AlchemyLanguageV1({
 //     });
 // });
 //
-// client.recordings.list({ dateCreated: "2016-10-30" }, function(err, data) {
-//     data.recordings.forEach(function(recording) {
-//         console.log(data);
-//     });
-// });
-
+client.recordings.list({ dateCreated: "2016-10-30" }, function(err, data) {
+    data.recordings.forEach(function(recording) {
+        console.log(data);
+    });
+});
+//
 // client.transcriptions("TRb2d7339d66e57918aa04c1f6959cde63").get(function(err, transcription) {
 //     // console.log(transcription.transcriptionText);
-//
-//     var params = {
-//         text: transcription.transcriptionText
-//     }
 
-
-    client.transcriptions.list(data) {
-        data.transcriptions.forEach(function(transcription) {
-            console.log(transcription.TranscriptionText[0]);
-        });
-    });
+    var params = {
+        text: transcription.transcriptionText
+    }
     // now we need to put the text in the watson-developer-cloud
     alchemy_language.keywords(params, function (err, response) {
         if (err) console.log('error:', err);
@@ -71,13 +64,13 @@ var alchemy_language = new AlchemyLanguageV1({
             var toUserCall  = 'Would you like the organiser of ' + matchWord(keywords[0]) + ' to contact you?'
             // console.log(toUserCall);
             //resp.say('Welcome to Twilio!');
-            client.calls.create({
-                url: "https://handler.twilio.com/twiml/EHdb58182deea04e1da9edf2e74627e7f1",
-                to: "+447706212658",
-                from: "+44 115 824 4806" //outgoing number
-            }, function(err, call) {
-                process.stdout.write(call.sid);
-            });
+            // client.calls.create({
+            //     url: "https://handler.twilio.com/twiml/EHdb58182deea04e1da9edf2e74627e7f1",
+            //     to: "+447706212658",
+            //     from: "+44 115 824 4806" //outgoing number
+            // }, function(err, call) {
+            //     process.stdout.write(call.sid);
+            // });
 
             resp.say(`${toUserCall}`, {
               voice: 'alice',
@@ -85,7 +78,6 @@ var alchemy_language = new AlchemyLanguageV1({
             })
             console.log(resp.toString());
             }
-
         });
 });
 
