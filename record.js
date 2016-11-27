@@ -46,12 +46,19 @@ var alchemy_language = new AlchemyLanguageV1({
 //     });
 // });
 
-client.transcriptions("TRb2d7339d66e57918aa04c1f6959cde63").get(function(err, transcription) {
-    // console.log(transcription.transcriptionText);
+// client.transcriptions("TRb2d7339d66e57918aa04c1f6959cde63").get(function(err, transcription) {
+//     // console.log(transcription.transcriptionText);
+//
+//     var params = {
+//         text: transcription.transcriptionText
+//     }
 
-    var params = {
-        text: transcription.transcriptionText
-    }
+
+    client.transcriptions.list(data) {
+        data.transcriptions.forEach(function(transcription) {
+            console.log(transcription.TranscriptionText[0]);
+        });
+    });
     // now we need to put the text in the watson-developer-cloud
     alchemy_language.keywords(params, function (err, response) {
         if (err) console.log('error:', err);
